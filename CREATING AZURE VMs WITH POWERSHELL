@@ -1,0 +1,45 @@
+TASKS
+
+Create a virtual network using Azure PowerShell and the following settings:
+
+- Resource group: Existing resource group
+- Name: TestVM
+- Virtual network: MyVnet
+- Security group: MySecurityGroup
+- Subnet: MySubnet
+- Public IP address: MyPubIP
+- Open ports: 80, 3389
+
+Create the virtual machine with New-AzVm
+Obtain the public IP address of the new virtual machine
+Connect to the VM via RDP
+
+#Creating and assigning variables
+#Get the resource group's name
+> $rg= (Get-AzResourceGroup).ResourceGroupName
+#Name for the VM
+> $vmname = "TestVM"
+#Name for the Vnet
+> $vnet = "MyVNet"
+#Name for the security group
+> $secg = "MySecurityGroup"
+#Name for the subnet
+> $subnet = "MySubnet"
+#Name for the public IP
+> $pip = "MyPubIP"
+#Open ports for web and RDP
+> $port = 80, 3389
+
+Creating the New Virtual Machine
+> New-AzVM -ResourceGroupName $rg -Name $vmname -VirtualNetworkName $vnet -SecurityGroupName $secg`
+-SubnetName $subnet -PublicIpAddressName $pip -PublicIpSku Standard -OpenPorts 80,3389
+
+#A prompt will appear for username and password before the creation begins
+
+*The default size will be chosen if one is not selected Standard_D2s_v3
+
+Obtain the public IP
+Get-AzPublicIpAddress -name $pip
+
+Connect to the VM via RDP
+mstsc.exe
