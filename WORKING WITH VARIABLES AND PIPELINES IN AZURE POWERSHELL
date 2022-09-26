@@ -1,0 +1,16 @@
+1.	Create a variable to list the Azure resources
+2.	Create a variable to show the date
+3.	Display Azure resources in a list format
+a.	Filter the list to show only resources with the kind equals Storage
+b.	Filter the list to show only resources with the kind not like Storage
+c.	Filter the list to show only resources with location equals westus
+d.	Filter the list to show resources by resource types
+e.	Filter the list to show name, location and kind
+1.	Create a variable to list the Azure resources
+2.	Create a variable to show the date
+3.	Display Azure resources in a list format
+a.	Filter the list to show only resources with the kind equals Storage
+b.	Filter the list to show only resources with the kind not like Storage
+c.	Filter the list to show only resources with location equals westus
+d.	Filter the list to show resources by resource types
+e.	Filter the list to show name, location and kind
