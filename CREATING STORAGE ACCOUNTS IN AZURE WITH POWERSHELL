@@ -1,0 +1,21 @@
+TASKS
+
+- Set a variable for the existing resource group name.
+- Set a variable for the location.
+- Create the Azure Storage Account
+
+Create the new Azure Storage account with the following information.
+-	Resource group: Use the variable created in the previous task.
+-	Name: Create a unique name for the storage account.
+-	Location: Use the variable created in the previous task.
+-	SKUName: Standard_LRS
+-	Kind: StorageV2
+
+- Set a variable for the existing resource group name.
+> $rgname = (Get-AzResourceGroup).ResourceGroupName
+
+- Set a variable for the location.
+> $loc = (Get-AzResourceGroup).Location
+
+- Create the Azure Storage Account
+> New-AzStorageAccount -ResourceGroupName $rgname -name "mysterystorageac" -location $loc -SkuName Standard_LRS -kind StorageV2
