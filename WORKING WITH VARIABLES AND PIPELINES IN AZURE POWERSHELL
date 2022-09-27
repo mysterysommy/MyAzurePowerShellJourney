@@ -5,7 +5,7 @@ TASKS
 3.	Display Azure resources in a list format
 a.	Filter the list to show only resources with the kind equals Storage
 b.	Filter the list to show only resources with the kind not like Storage
-c.	Filter the list to show only resources with location equals westus
+c.	Filter the list to show only resources with location the same as the resource group
 d.	Filter the list to show resources by resource types
 e.	Filter the list to show name, location and kind
 
@@ -24,8 +24,8 @@ $Resources | Where-Object {$_.Kind -eq 'Storage'}
 b.	Filter the list to show only resources with the kind not like Storage
 $Resources | Where-Object {$_.Kind -notlike 'Storage'}
 
-c.	Filter the list to show only resources with location equals westus
-$Resources | Where-Object {$_.Location -eq 'westus'}
+c.	Filter the list to show only resources with location the same as the resource group
+$Resources | Where-Object {$_.Location -eq (Get-AzResourceGroup).Location}
 
 d.	Filter the list to show resources by resource types
 $Resources | Format-List -GroupBy ResourceType
