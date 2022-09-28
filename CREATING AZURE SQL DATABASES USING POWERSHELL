@@ -1,0 +1,38 @@
+TASKS
+
+Create the Variables for the SQL Server and Database
+Set a variable for the existing resource group name.
+Set a variable for the location.
+Set a variable for the SQL Server name you will be creating.
+Create the Azure SQL Server
+Create the SQL Database
+
+#Create the Azure SQL Server using the following parameters:
+-	Resource group
+-	Server name
+-	Location
+-	Server version: 12.0
+-	SQL administrator credentials: Use Get-Credentials.
+
+#Create the Azure SQL Database with the following parameters: 
+-	Resource group
+-	Server name
+-	Database name
+
+#Set a variable for the existing resource group name.
+$rgname = (Get-AzResourceGroup).ResourceGroupName
+
+#Set a variable for the location.
+$loc = (Get-AzResourceGroup).Location 
+
+#Set a variable for the SQL Server name you will be creating.
+$servername = 'mysqlserver01'
+
+#Set a variable for the Database name you will be creating.
+$dbname = 'mydb01'
+
+#Create the Azure SQL Server
+New-AzSqlServer -ResourceGroupName $rgname -ServerName $servername -Location $loc -ServerVersion '12.0' -SqlAdministratorCredentials (Get-Credential) ## gives a prompt for username and password
+
+#Create the SQL Database
+New-AzSqlDatabase -ResourceGroupName $rgname -ServerName $servername -DatabaseName $dbname
