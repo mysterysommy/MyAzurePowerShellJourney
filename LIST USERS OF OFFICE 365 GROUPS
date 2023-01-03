@@ -1,0 +1,1 @@
+ Get-UnifiedGroupLinks -Identity "Group Name" -LinkType Members |select displayname,primarysmtpaddress |Export-Csv "C:\Users\Admin\Downloads\Demo.csv" -NoTypeInformation -Encoding UTF8
