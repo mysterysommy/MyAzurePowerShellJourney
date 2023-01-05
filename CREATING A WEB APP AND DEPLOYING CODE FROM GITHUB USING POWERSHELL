@@ -1,0 +1,26 @@
+CREATING A WEB APP AND DEPLOYING CODE FROM GITHUB USING POWERSHELL
+
+CREATE THE AZURE APP SERVICE PLAN AND WEB APP
+
+Create the following variables (replacing <UNIQUE_WEB_APP_NAME> with a globally unique name):
+$gitrepo = "<GIT_HUB_REPO_ADDRESS>"
+$webappname = "<UNIQUE_WEB_APP_NAME>"
+$location = "<LOCATION>"
+$resourceGroup = '<RESOURCE_GROUP_PROVISIONED_FOR_THE_APP>'
+
+CREATE THE APP SERVICE PLAN:
+New-AzAppServicePlan -Name $webappname -Location $location -ResourceGroupName $resourceGroup -Tier Free
+
+CREATE THE WEB APP:
+New-AzWebApp -Name $webappname -Location $location -AppServicePlan $webappname -ResourceGroupName $resourceGroup
+
+CREATE AND APPLY THE CONFIGURATION TO THE WEB APP
+Create the variable for the GitHub configuration:
+$PropertiesObject = @{
+  repoUrl = "$gitrepo";
+  branch = "master";
+  isManualIntegration = "true";
+}
+
+APPLY THE CONFIGURATION TO THE WEB APP:
+Set-AzResource -PropertyObject $PropertiesObject -ResourceGroupName $resourceGroup -ResourceType Microsoft.Web/sites/sourcecontrols -ResourceName $webappname/web -ApiVersion 2015-08-01 -Force
